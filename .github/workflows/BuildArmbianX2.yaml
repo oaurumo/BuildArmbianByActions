@@ -123,7 +123,7 @@ jobs:
           # cd ../..   
           # KERNELBRANCH="tag:v6.1" \
           # KERNEL_MAJOR_MINOR=6.1 \
-            ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=panther-x2 BRANCH=legacy BUILD_MINIMAL=yes BUILD_ONLY=no HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no  COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow PACKAGE_LIST_BOARD="vim-tiny hostapd bridge-utils ifupdown iptables network-manager" SHARE_LOG=yes
+            ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=rk3566-h96-tvbox BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no  COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow PACKAGE_LIST_BOARD="vim-tiny hostapd bridge-utils ifupdown iptables network-manager" SHARE_LOG=yes
            # ./compile.sh build RELEASE=${{ inputs.set_release }} BOARD=panther-x2 BRANCH=vendor BUILD_DESKTOP=no BUILD_MINIMAL=yes BUILD_ONLY=no COMPRESS_OUTPUTIMAGE=sha,img KERNEL_BTF=no KERNEL_CONFIGURE=no KERNEL_GIT=shallow PACKAGE_LIST_BOARD='vim-tiny hostapd bridge-utils ifupdown iptables wireless-regdb network-manager' SHARE_LOG=yes
 
           cd output/images/          
