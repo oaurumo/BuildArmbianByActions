@@ -103,7 +103,7 @@ jobs:
           wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_jammy_current_6.12.45_minimal/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_jammy_current_6.12.45_minimal.img.xz
           wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_trixie_current_6.12.45_minimal/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_trixie_current_6.12.45_minimal.img.xz
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-
-          touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"
+          touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  && ls -l >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
           # sudo xz -9 *.img          
