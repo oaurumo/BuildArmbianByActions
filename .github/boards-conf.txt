@@ -1,75 +1,366 @@
-
-9tripod-x3568-v4.csc       firefly-rk3399.csc           musepipro.conf                  orangepilite.csc          rock-5a.conf
-aml-a311d-cc.conf          forlinx-ok3506-s12.csc       nanopct4.csc                    orangepimini.eos          rock-5b.conf
-aml-c400-plus.conf         fxblox-rk1.csc               nanopct6.conf                   orangepione.conf          rock-5b-plus.conf
-aml-s805-mxq.tvb           gateway-gz80x.conf           nanopct6-lts.conf               orangepioneplus.csc       rock-5c.conf
-aml-s905d3-cc.wip          h96-tvbox-3566.tvb           nanopia64.csc                   orangepipc2.conf          rock-5-cmio.csc
-aml-s9xx-box.tvb           helios4.conf                 nanopiair.csc                   orangepipc.csc            rock-5-cm-rpi-cm4-io.csc
-aml-t95z-plus.tvb          helios64.conf                nanopiduo2.csc                  orangepipcplus.csc        rock-5-itx.conf
-armsom-aim7-io.csc         hikey960.csc                 nanopiduo.csc                   orangepiplus2e.csc        rock-5t.conf
-armsom-cm5-io.csc          hinlink-h28k.csc             nanopik1plus.conf               orangepiplus.csc          rock64.csc
-armsom-cm5-rpi-cm4-io.csc  hinlink-h66k.csc             nanopik2-s905.conf              orangepiprime.csc         rockpi-4a.csc
-armsom-forge1.csc          hinlink-h68k.csc             nanopim1.eos                    orangepi-r1.csc           rockpi-4b.csc
-armsom-sige1.csc           hinlink-h88k.csc             nanopim1plus2.eos               orangepi-r1plus.csc       rockpi-4bplus.csc
-armsom-sige3.csc           hinlink-hnas.csc             nanopim1plus.eos                orangepi-r1plus-lts.csc   rockpi-4c.csc
-armsom-sige5.csc           hinlink-ht2.csc              nanopim4.csc                    orangepir2s.csc           rockpi-4cplus.csc
-armsom-sige7.csc           imb3588.conf                 nanopim4v2.conf                 orangepi-rk3399.csc       rockpi-e.conf
-armsom-w3.csc              imx7sabre.eos                nanopi-m5.conf                  orangepirv2.csc           rockpi-n10.csc
-avaota-a1.csc              indiedroid-nova.csc          nanopi-m6.conf                  orangepiwin.csc           rockpi-s.conf
-ayn-odin2.csc              inovato-quadra.conf          nanopineo2black.csc             orangepizero2.csc         rockpro64.csc
-ayn-odin2mini.csc          jethubj100.conf              nanopineo2.csc                  orangepizero2w.csc        rock-s0.conf
-ayn-odin2portal.csc        jethubj200.conf              nanopineo3.csc                  orangepizero3.csc         roc-rk3399-pc.csc
-ayn-thor.csc               jethubj80.conf               nanopineo4.csc                  orangepizero.csc          rpi4b.conf
-bananapicm4io.conf         jetson-nano.eos              nanopineocore2.csc              orangepizeroplus2-h3.csc  sakurapi-rk3308b.conf
-bananapi.conf              jp-tvbox-3566.tvb            nanopineo.csc                   orangepizeroplus2-h5.csc  sk-am62b.conf
-bananapif3.conf            khadas-edge2.conf            nanopineoplus2.csc              orangepizeroplus.csc      sk-am62-lp.conf
-bananapim1plus.csc         khadas-edge.csc              nanopi-r1.csc                   panther-x2.csc            sk-am62p.conf
-bananapim2.eos             khadas-vim1.conf             nanopi-r1s-h5.csc               pcduino2.eos              sk-am62-sip.conf
-bananapim2plus.conf        khadas-vim1s.conf            nanopi-r2c.csc                  pcduino3.csc              sk-am64b.conf
-bananapim2pro.conf         khadas-vim2.conf             nanopi-r2s.csc                  pcduino3nano.eos          sk-am68.conf
-bananapim2s.conf           khadas-vim3.conf             nanopi-r2s-plus.csc             photonicat2.csc           sk-am69.conf
-bananapim2ultra.csc        khadas-vim3l.conf            nanopi-r3s.csc                  phytiumpi.conf            sk-tda4vm.conf
-bananapim2zero.csc         khadas-vim4.conf             nanopi-r3s-lts.conf             pine64.conf               smart-am40.csc
-bananapim3.csc             kickpik2b.csc                nanopi-r4s.conf                 pine64so.csc              star64.eos
-bananapim4berry.conf       lafrite.conf                 nanopi-r4se.csc                 pinebook-a64.csc          station-m1.csc
-bananapim4zero.conf        lamobo-r1.eos                nanopi-r5c.csc                  pinebook-pro.csc          station-m2.csc
-bananapim5.conf            lckfb-taishanpi.csc          nanopi-r5s.csc                  pinecube.csc              station-m3.csc
-bananapim5pro.conf         leez-p710.csc                nanopi-r6c.csc                  pineh64-b.csc             station-p1.csc
-bananapim64.csc            lepotato.conf                nanopi-r6s.conf                 pineh64.csc               station-p2.csc
-bananapim7.conf            licheepi-4a.eos              nanopi-r76s.conf                pocketbeagle2.conf        sunvell-r69.tvb
-bananapipro.csc            lime2.csc                    nanopi-zero2.csc                pocketchip-sd.csc         sweet-potato.conf
-bananapir2.csc             lime-a10.eos                 nezha.eos                       qemu-uboot-arm64.csc      tanix-tx6.tvb
-bananapir2pro.csc          lime-a33.csc                 norco-emb-3531.csc              qemu-uboot-x86.csc        thinkpad-x13s.conf
-bananapir4.csc             lime-a64.csc                 numaker-iot-ma35d16f90.csc      qemu-uefi-x86.csc         tinkerboard-2.csc
-beaglebone-ai64.conf       lime.csc                     odroidc1.conf                   qidi-x6.csc               tinkerboard.conf
-beagleplay.conf            longanpi-3h.csc              odroidc2.conf                   quartz64a.csc             tinker-edge-r.csc
-beaglev.eos                longanpi-4b.csc              odroidc4.conf                   quartz64b.csc             tmds62levm.conf
-beagley-ai.conf            lubancat2.csc                odroidhc4.conf                  radxa-cm4-io.conf         tritium-h3.conf
-beelinkx2.tvb              luckfox-core3566.csc         odroidm1.conf                   radxa-cm5-io.conf         tritium-h5.conf
-bestv-r3300-l.csc          luckfox-lyra-plus.csc        odroidm1s.csc                   radxa-cubie-a5e.csc       turing-rk1.csc
-bigtreetech-cb1.conf       luckfox-lyra-ultra-w.csc     odroidm2.conf                   radxa-dragon-q6a.conf     udoo.csc
-bigtreetech-cb2.conf       luckfox-lyra-zero-w.csc      odroidn2.conf                   radxa-e20c.csc            uefi-arm64.conf
-cainiao-cniot-core.csc     luckfox-pico-max.csc         odroidn2l.csc                   radxa-e24c.wip            uefi-loong64.conf
-cherryba-m1.csc            luckfox-pico-mini.csc        odroidxu4.conf                  radxa-e25.conf            uefi-riscv64.csc
-clearfogbase.csc           macchiatobin-doubleshot.eos  olimex-a20-olinuxino-micro.csc  radxa-e52c.conf           uefi-x86.conf
-clearfogpro.conf           mangopi-m28k.csc             olimex-som204-a20.eos           radxa-e54c.conf           unleashed.eos
-clockworkpi-a06.csc        mangopi-mq.eos               olimex-som-a20.eos              radxa-nio-12l.conf        unmatched.eos
-cm3588-nas.csc             mba8mpxl.conf                olimex-teres-a64.csc            radxa-rock-4d.conf        virtual-qemu.eos
-coolpi-cm5.csc             mba8mpxl-ras314.conf         olinux-som-a13.csc              radxa-zero2.csc           visionfive2.csc
-coolpi-genbook.csc         mekotronics-r58-4x4.conf     onecloud.csc                    radxa-zero3.conf          visionfive.eos
-cubieboard2.csc            mekotronics-r58hd.conf       oneplus-kebab.conf              radxa-zero.conf           wdk2023.eos
-cubieboard4.eos            mekotronics-r58-minipc.csc   orangepi2.csc                   README.md                 x96-mate.tvb
-cubieboard.csc             mekotronics-r58s2.conf       orangepi3b.csc                  recore.csc                x96q.tvb
-cubietruck.csc             mekotronics-r58x-4g.csc      orangepi3.csc                   renegade.conf             xiaobao-nas.csc
-cubietruckplus.eos         mekotronics-r58x.csc         orangepi3-lts.conf              retroidpocket-rp5.csc     xiaomi-elish.conf
-cubox-i.eos                mekotronics-r58x-pro.csc     orangepi-4a.csc                 retroidpocket-rpmini.csc  xpressreal-t3.csc
-cyber-aib-rk3588.csc       melea1000.csc                orangepi4.csc                   retro-lite-cm5.csc        xt-q8l-v10.tvb
-dg-svr-865-tiny.conf       microzed.eos                 orangepi4-lts.conf              rk322x-box.tvb            youyeetoo-r1-v3.csc
-dshanpi-a1.csc             miqi.eos                     orangepi5b.csc                  rk3318-box.tvb            youyeetoo-yy3588.csc
-dshanpi-r1.csc             mixtile-blade3.csc           orangepi5.conf                  rk3328-heltec.csc         yy3568.csc
-dusun-dsom-010r.csc        mixtile-core3588e.csc        orangepi5-max.csc               rk3566-box-demo.csc       z28pro.tvb
-ebyte-ecb41-pge.csc        mixtile-edge2.csc            orangepi5-plus.conf             rock-2a.conf              zeropi.csc
-espressobin.conf           mk808c.csc                   orangepi5pro.csc                rock-2f.conf
-fe-som-rk3399.eos          mksklipad50.conf             orangepi5-ultra.csc             rock-3a.conf
-fine3399.csc               mkspi.csc                    orangepi.eos                    rock-3c.csc
-firefly-itx-3588j.csc      musebook.conf                orangepilite2.csc               rock-4se.csc
+9tripod-x3568-v4.csc
+aml-a311d-cc.conf
+aml-c400-plus.conf
+aml-s805-mxq.tvb
+aml-s905d3-cc.wip
+aml-s9xx-box.tvb
+aml-t95z-plus.tvb
+armsom-aim7-io.csc
+armsom-cm5-io.csc
+armsom-cm5-rpi-cm4-io.csc
+armsom-forge1.csc
+armsom-sige1.csc
+armsom-sige3.csc
+armsom-sige5.csc
+armsom-sige7.csc
+armsom-w3.csc
+avaota-a1.csc
+ayn-odin2.csc
+ayn-odin2mini.csc
+ayn-odin2portal.csc
+ayn-thor.csc
+bananapi.conf
+bananapicm4io.conf
+bananapif3.conf
+bananapim1plus.csc
+bananapim2.eos
+bananapim2plus.conf
+bananapim2pro.conf
+bananapim2s.conf
+bananapim2ultra.csc
+bananapim2zero.csc
+bananapim3.csc
+bananapim4berry.conf
+bananapim4zero.conf
+bananapim5.conf
+bananapim5pro.conf
+bananapim64.csc
+bananapim7.conf
+bananapipro.csc
+bananapir2.csc
+bananapir2pro.csc
+bananapir4.csc
+beaglebone-ai64.conf
+beagleplay.conf
+beaglev.eos
+beagley-ai.conf
+beelinkx2.tvb
+bestv-r3300-l.csc
+bigtreetech-cb1.conf
+bigtreetech-cb2.conf
+cainiao-cniot-core.csc
+cherryba-m1.csc
+clearfogbase.csc
+clearfogpro.conf
+clockworkpi-a06.csc
+cm3588-nas.csc
+coolpi-cm5.csc
+coolpi-genbook.csc
+cubieboard.csc
+cubieboard2.csc
+cubieboard4.eos
+cubietruck.csc
+cubietruckplus.eos
+cubox-i.eos
+cyber-aib-rk3588.csc
+dg-svr-865-tiny.conf
+dshanpi-a1.csc
+dshanpi-r1.csc
+dusun-dsom-010r.csc
+ebyte-ecb41-pge.csc
+espressobin.conf
+fe-som-rk3399.eos
+fine3399.csc
+firefly-itx-3588j.csc
+firefly-rk3399.csc
+forlinx-ok3506-s12.csc
+fxblox-rk1.csc
+gateway-gz80x.conf
+h96-tvbox-3566.tvb
+helios4.conf
+helios64.conf
+hikey960.csc
+hinlink-h28k.csc
+hinlink-h66k.csc
+hinlink-h68k.csc
+hinlink-h88k.csc
+hinlink-hnas.csc
+hinlink-ht2.csc
+imb3588.conf
+imx7sabre.eos
+indiedroid-nova.csc
+inovato-quadra.conf
+jethubj100.conf
+jethubj200.conf
+jethubj80.conf
+jetson-nano.eos
+jp-tvbox-3566.tvb
+khadas-edge.csc
+khadas-edge2.conf
+khadas-vim1.conf
+khadas-vim1s.conf
+khadas-vim2.conf
+khadas-vim3.conf
+khadas-vim3l.conf
+khadas-vim4.conf
+kickpik2b.csc
+lafrite.conf
+lamobo-r1.eos
+lckfb-taishanpi.csc
+leez-p710.csc
+lepotato.conf
+licheepi-4a.eos
+lime.csc
+lime2.csc
+lime-a10.eos
+lime-a33.csc
+lime-a64.csc
+longanpi-3h.csc
+longanpi-4b.csc
+lubancat2.csc
+luckfox-core3566.csc
+luckfox-lyra-plus.csc
+luckfox-lyra-ultra-w.csc
+luckfox-lyra-zero-w.csc
+luckfox-pico-max.csc
+luckfox-pico-mini.csc
+macchiatobin-doubleshot.eos
+mangopi-m28k.csc
+mangopi-mq.eos
+mba8mpxl.conf
+mba8mpxl-ras314.conf
+mekotronics-r58-4x4.conf
+mekotronics-r58hd.conf
+mekotronics-r58-minipc.csc
+mekotronics-r58s2.conf
+mekotronics-r58x.csc
+mekotronics-r58x-4g.csc
+mekotronics-r58x-pro.csc
+melea1000.csc
+microzed.eos
+miqi.eos
+mixtile-blade3.csc
+mixtile-core3588e.csc
+mixtile-edge2.csc
+mk808c.csc
+mksklipad50.conf
+mkspi.csc
+musebook.conf
+musepipro.conf
+nanopct4.csc
+nanopct6.conf
+nanopct6-lts.conf
+nanopia64.csc
+nanopiair.csc
+nanopiduo.csc
+nanopiduo2.csc
+nanopik1plus.conf
+nanopik2-s905.conf
+nanopim1.eos
+nanopim1plus.eos
+nanopim1plus2.eos
+nanopim4.csc
+nanopim4v2.conf
+nanopi-m5.conf
+nanopi-m6.conf
+nanopineo.csc
+nanopineo2.csc
+nanopineo2black.csc
+nanopineo3.csc
+nanopineo4.csc
+nanopineocore2.csc
+nanopineoplus2.csc
+nanopi-r1.csc
+nanopi-r1s-h5.csc
+nanopi-r2c.csc
+nanopi-r2s.csc
+nanopi-r2s-plus.csc
+nanopi-r3s.csc
+nanopi-r3s-lts.conf
+nanopi-r4s.conf
+nanopi-r4se.csc
+nanopi-r5c.csc
+nanopi-r5s.csc
+nanopi-r6c.csc
+nanopi-r6s.conf
+nanopi-r76s.conf
+nanopi-zero2.csc
+nezha.eos
+norco-emb-3531.csc
+numaker-iot-ma35d16f90.csc
+odroidc1.conf
+odroidc2.conf
+odroidc4.conf
+odroidhc4.conf
+odroidm1.conf
+odroidm1s.csc
+odroidm2.conf
+odroidn2.conf
+odroidn2l.csc
+odroidxu4.conf
+olimex-a20-olinuxino-micro.csc
+olimex-som204-a20.eos
+olimex-som-a20.eos
+olimex-teres-a64.csc
+olinux-som-a13.csc
+onecloud.csc
+oneplus-kebab.conf
+orangepi.eos
+orangepi2.csc
+orangepi3.csc
+orangepi3b.csc
+orangepi3-lts.conf
+orangepi4.csc
+orangepi-4a.csc
+orangepi4-lts.conf
+orangepi5.conf
+orangepi5b.csc
+orangepi5-max.csc
+orangepi5-plus.conf
+orangepi5pro.csc
+orangepi5-ultra.csc
+orangepilite.csc
+orangepilite2.csc
+orangepimini.eos
+orangepione.conf
+orangepioneplus.csc
+orangepipc.csc
+orangepipc2.conf
+orangepipcplus.csc
+orangepiplus.csc
+orangepiplus2e.csc
+orangepiprime.csc
+orangepi-r1.csc
+orangepi-r1plus.csc
+orangepi-r1plus-lts.csc
+orangepir2s.csc
+orangepi-rk3399.csc
+orangepirv2.csc
+orangepiwin.csc
+orangepizero.csc
+orangepizero2.csc
+orangepizero2w.csc
+orangepizero3.csc
+orangepizeroplus.csc
+orangepizeroplus2-h3.csc
+orangepizeroplus2-h5.csc
+panther-x2.csc
+pcduino2.eos
+pcduino3.csc
+pcduino3nano.eos
+photonicat2.csc
+phytiumpi.conf
+pine64.conf
+pine64so.csc
+pinebook-a64.csc
+pinebook-pro.csc
+pinecube.csc
+pineh64.csc
+pineh64-b.csc
+pocketbeagle2.conf
+pocketchip-sd.csc
+qemu-uboot-arm64.csc
+qemu-uboot-x86.csc
+qemu-uefi-x86.csc
+qidi-x6.csc
+quartz64a.csc
+quartz64b.csc
+radxa-cm4-io.conf
+radxa-cm5-io.conf
+radxa-cubie-a5e.csc
+radxa-dragon-q6a.conf
+radxa-e20c.csc
+radxa-e24c.wip
+radxa-e25.conf
+radxa-e52c.conf
+radxa-e54c.conf
+radxa-nio-12l.conf
+radxa-rock-4d.conf
+radxa-zero.conf
+radxa-zero2.csc
+radxa-zero3.conf
+README.md
+recore.csc
+renegade.conf
+retroidpocket-rp5.csc
+retroidpocket-rpmini.csc
+retro-lite-cm5.csc
+rk322x-box.tvb
+rk3318-box.tvb
+rk3328-heltec.csc
+rk3566-box-demo.csc
+rock-2a.conf
+rock-2f.conf
+rock-3a.conf
+rock-3c.csc
+rock-4se.csc
+rock-5a.conf
+rock-5b.conf
+rock-5b-plus.conf
+rock-5c.conf
+rock-5-cmio.csc
+rock-5-cm-rpi-cm4-io.csc
+rock-5-itx.conf
+rock-5t.conf
+rock64.csc
+rockpi-4a.csc
+rockpi-4b.csc
+rockpi-4bplus.csc
+rockpi-4c.csc
+rockpi-4cplus.csc
+rockpi-e.conf
+rockpi-n10.csc
+rockpi-s.conf
+rockpro64.csc
+rock-s0.conf
+roc-rk3399-pc.csc
+rpi4b.conf
+sakurapi-rk3308b.conf
+sk-am62b.conf
+sk-am62-lp.conf
+sk-am62p.conf
+sk-am62-sip.conf
+sk-am64b.conf
+sk-am68.conf
+sk-am69.conf
+sk-tda4vm.conf
+smart-am40.csc
+star64.eos
+station-m1.csc
+station-m2.csc
+station-m3.csc
+station-p1.csc
+station-p2.csc
+sunvell-r69.tvb
+sweet-potato.conf
+tanix-tx6.tvb
+thinkpad-x13s.conf
+tinkerboard.conf
+tinkerboard-2.csc
+tinker-edge-r.csc
+tmds62levm.conf
+tritium-h3.conf
+tritium-h5.conf
+turing-rk1.csc
+udoo.csc
+uefi-arm64.conf
+uefi-loong64.conf
+uefi-riscv64.csc
+uefi-x86.conf
+unleashed.eos
+unmatched.eos
+virtual-qemu.eos
+visionfive.eos
+visionfive2.csc
+wdk2023.eos
+x96-mate.tvb
+x96q.tvb
+xiaobao-nas.csc
+xiaomi-elish.conf
+xpressreal-t3.csc
+xt-q8l-v10.tvb
+youyeetoo-r1-v3.csc
+youyeetoo-yy3588.csc
+yy3568.csc
+z28pro.tvb
+zeropi.csc
