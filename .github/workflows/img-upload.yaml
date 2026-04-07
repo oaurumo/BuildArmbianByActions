@@ -149,7 +149,7 @@ jobs:
           touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
-          sudo xz -9 *.img          
+          # sudo xz -9 *.img          
           # timestamp=$(date +%Y%m%d%H%M%S)
           txt_file=$(find . -maxdepth 1 -type f -name "*.txt" | head -n 1)
           if [ -z "$txt_file" ]; then
