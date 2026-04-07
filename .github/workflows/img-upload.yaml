@@ -71,7 +71,7 @@ jobs:
           df -Th
           echo "status=success" >> ${GITHUB_OUTPUT}
       # 下载源代码
-      - name: Set Armbian download source
+      - name: mkdir_build
         id: down
         working-directory: /builder
         if: ${{ steps.init.outputs.status == 'success' && !cancelled() }}
@@ -82,7 +82,7 @@ jobs:
           echo "status=success" >> $GITHUB_OUTPUT
 
         # 编译 Armbian
-      - name: Compile Armbian [ ${{ inputs.set_release }} ]
+      - name: wget files [ ${{ inputs.set_release }} ]
         id: compile
         working-directory: /builder
         if: ${{ steps.down.outputs.status == 'success' && !cancelled() }}
