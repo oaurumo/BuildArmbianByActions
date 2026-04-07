@@ -7,13 +7,16 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-      set_release:
-        description: "Select."
+      set_url:
+        description: "请输入url."
         required: false
-        default: "upload"
-        type: choice
-        options:          
-          - upload
+        default: " "
+        type: string
+     # set_url2:
+        # description: "请输入url."
+        # required: false
+        # default: " "
+        # type: string
 env:
   TZ: Etc/UTC
 
@@ -94,14 +97,8 @@ jobs:
           cd build/
           mkdir -p output && mkdir -p output/images          
           cd output/images/
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_26.05.0-trunk_H96-tvbox-3566_resolute_current_6.18.21_minimal/Armbian-unofficial_26.05.0-trunk_H96-tvbox-3566_resolute_current_6.18.21_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_26.05.0-trunk_Rk3318-box_resolute_current_6.18.21_minimal/Armbian-unofficial_26.05.0-trunk_Rk3318-box_resolute_current_6.18.21_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_26.02.0-trunk_Jp-tvbox-3566_trixie_current_6.18.6_minimal/Armbian-unofficial_26.02.0-trunk_Jp-tvbox-3566_trixie_current_6.18.6_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_26.02.0-trunk_Jp-tvbox-3566_noble_current_6.18.6_minimal/Armbian-unofficial_26.02.0-trunk_Jp-tvbox-3566_noble_current_6.18.6_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_Rk3318-box_trixie_current_6.12.53_minimal/Armbian-unofficial_25.11.0-trunk_Rk3318-box_trixie_current_6.12.53_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_Jp-tvbox-3566_trixie_current_6.12.49_minimal/Armbian-unofficial_25.11.0-trunk_Jp-tvbox-3566_trixie_current_6.12.49_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_jammy_current_6.12.45_minimal/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_jammy_current_6.12.45_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_trixie_current_6.12.45_minimal/Armbian-unofficial_25.11.0-trunk_H96-tvbox-3566_trixie_current_6.12.45_minimal.img.xz
+          # wget https://github.com/oaurumo/BuildArmbianByActions/rerrent_6.18.21_minimal.img.xz
+          wget ${{ inputs.set_url }}
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-
           touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  && ls -l >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
           tag_img=$(ls -t *.txt| head -n 1)
