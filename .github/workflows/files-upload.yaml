@@ -97,10 +97,10 @@ jobs:
           cd build/
           mkdir -p output && mkdir -p output/images          
           cd output/images/
-          # wget https://github.com/oaurumo/BuildArmbianByActions/rerrent_6.18.21_minimal.img.xz
-          # touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  && ls -l >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
-          touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  &&  ${{ inputs.set_url }} >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt && wget -i Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
-          # wget ${{ inputs.set_url }}   
+          # wget https://github.com/minimal.img.xz
+          touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  && ls -l >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
+          # touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  &&  ${{ inputs.set_url }} >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt && wget -i Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
+          wget ${{ inputs.set_url }}   
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
