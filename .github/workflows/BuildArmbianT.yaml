@@ -132,11 +132,11 @@ jobs:
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=bananapim4zero BRANCH=edge BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=panther-x2 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny hostapd bridge-utils ifupdown iptables network-manager"  
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=jp-tvbox-3566 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
-          sudo tar -cpf build.tar  action.yml config extensions LICENSE packages requirements.txt userpatches cache CONTRIBUTING.md patch shell.nix VERSION compile.sh CREDITS.md lib README.md tools
-          sudo xz -k -9 build.tar
-          sudo mv build.tar.xz output/images/
+          # sudo tar -cpf build.tar  action.yml config extensions LICENSE packages requirements.txt userpatches cache CONTRIBUTING.md patch shell.nix VERSION compile.sh CREDITS.md lib README.md tools
+          # sudo xz -k -9 build.tar
+          # sudo mv build.tar.xz output/images/
           cd output/images/
-          sudo split -b 1990M build.tar.xz build.tar.xz.part-
+          # sudo split -b 1990M build.tar.xz build.tar.xz.part-
           tag_img=$(ls -t *.img | head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .img)          
           sudo xz -9 *.img          
