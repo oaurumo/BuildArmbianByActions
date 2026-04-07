@@ -15,6 +15,7 @@ on:
         default: "jammy"
         type: choice
         options:          
+          - resolute
           - noble
           - jammy
           - focal
