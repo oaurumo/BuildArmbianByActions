@@ -14,10 +14,17 @@ on:
         default: "noble"
         type: choice
         options:
-          - trixie
-          - bookworm
           - resolute
           - noble
+          - jammy
+          - focal
+          - bionic
+          - ---
+          - trixie
+          - bookworm
+          - bullseye
+          - buster
+          - stretch
       publish_docker:
         description: "Publish Docker image"
         required: false
