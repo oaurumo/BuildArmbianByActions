@@ -9,22 +9,12 @@ on:
   workflow_dispatch:
     inputs:
       set_release:
-        description: "Select OS Release."
+        description: "Select."
         required: false
         default: "resolute"
         type: choice
         options:          
-          - resolute
-          - noble
-          - jammy
-          - focal
-          - bionic
           - ---
-          - trixie
-          - bookworm
-          - bullseye
-          - buster
-          - stretch
 env:
   TZ: Etc/UTC
 
