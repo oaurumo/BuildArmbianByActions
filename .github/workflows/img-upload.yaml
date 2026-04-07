@@ -11,10 +11,10 @@ on:
       set_release:
         description: "Select."
         required: false
-        default: "resolute"
+        default: "upload"
         type: choice
         options:          
-          - ---
+          - upload
 env:
   TZ: Etc/UTC
 
