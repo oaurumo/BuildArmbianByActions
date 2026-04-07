@@ -1,6 +1,5 @@
 #==========================================================================
-# Description: Build Armbian from official upstream images
-# Copyright (C) 2021 https://github.com/ophub/amlogic-s9xxx-armbian
+# Description: upload files.
 #==========================================================================
 
 name: img-upload
@@ -77,8 +76,7 @@ jobs:
         working-directory: /builder
         if: ${{ steps.init.outputs.status == 'success' && !cancelled() }}
         run: |
-          df -hT ${PWD}
-          # git clone -q --single-branch --depth=1 --branch=main https://github.com/armbian/build.git build
+          df -hT ${PWD}          
           mkdir -p build
           ln -sf /builder/build ${GITHUB_WORKSPACE}/build
           echo "status=success" >> $GITHUB_OUTPUT
@@ -90,42 +88,11 @@ jobs:
         if: ${{ steps.down.outputs.status == 'success' && !cancelled() }}
         run: |
           # 编译方法及参数说明: https://docs.armbian.com/Developer-Guide_Build-Options
-          # sudo timedatectl set-timezone Asia/Shanghai
-          # sudo update-locale LANG=zh_CN.UTF-8
+          # sudo timedatectl set-timezone Asia/Shanghai          
           sudo timedatectl set-ntp true
           timedatectl
           cd build/
-          mkdir -p output && mkdir -p output/images
-          # sed -i '/KERNEL_TARGET="current,edge"/d' config/boards/rk3318-box.tvb
-          # echo "KERNEL_TARGET="current,legacy,edge,5.15.y,5.10.y"" > config/boards/rk3318-box.tvb
-          mkdir -p userpatches
-          cd userpatches
-          # echo "KERNELBRANCH='tag:v5.15.16'" > lib.config
-          # echo "source "${BASH_SOURCE%/*}/include/rockchip64_common.inc"" > rockchip64.conf
-          # echo "prepare_boot_configuration" > rockchip64.conf    
-          # echo "KERNEL_GIT_BRANCH='linux-5.15.y'" > lib.config
-          # Add: KERNELBRANCH='tag:v4.14.52' to build/userpatches/lib.config
-          # wget http://kguba.cn/txt/armbianconfig/lib.config
-          # wget http://kguba.cn/txt/armbianconfig/linux-rockchip64-current.config
-          # chmod 777 lib.config && chmod 777 linux-rockchip64-current.config
-          #   wget http://kguba.cn/txt/armbianconfig/lib.config
-          #   wget http://kguba.cn/txt/armbianconfig/linux-rockchip64-current.config
-          #   chmod 777 lib.config && chmod 777 linux-rockchip64-current.config
-          cd ..
-          # cd patch/misc/   h96-tvbox-3566
-          # wget http://kguba.cn/zip/wireless-rtl8723cs2.tar  tar -xf wireless-rtl8723cs2.tar
-          # cd ../..      
-          # BRANCH=legacy current vendor edge collabora midstream 
-          # --kernel 5.15.16  EXPERT=yes启用交互  BRANCH=current KERNEL_GIT=shallow  KERNEL_GIT_BRANCH=linux-5.15.16 ARMBIAN_BUILD_NONINTERACTIVE=yes
-          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=aml-s9xx-box BRANCH=current BUILD_MINIMAL=no  BUILD_DESKTOP=yes  KERNEL_CONFIGURE=no DESKTOP_ENVIRONMENT=xfce DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base COMPRESS_OUTPUTIMAGE=sha,img.xz
-          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=rk3318-box BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny iptables network-manager"  
-          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=rk3318-box BRANCH=current KERNEL_BTF=no ARMBIAN_BUILD_NONINTERACTIVE=yes BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=no KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
-          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=bananapim4zero BRANCH=edge BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
-          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=panther-x2 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny hostapd bridge-utils ifupdown iptables network-manager"  
-          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=jp-tvbox-3566 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
-          # sudo tar -cpf build.tar  action.yml config extensions LICENSE packages requirements.txt userpatches cache CONTRIBUTING.md patch shell.nix VERSION compile.sh CREDITS.md lib README.md tools
-          # sudo xz -k -9 build.tar
-          # sudo mv build.tar.xz output/images/
+          mkdir -p output && mkdir -p output/images          
           cd output/images/
           wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_26.05.0-trunk_H96-tvbox-3566_resolute_current_6.18.21_minimal/Armbian-unofficial_26.05.0-trunk_H96-tvbox-3566_resolute_current_6.18.21_minimal.img.xz
           wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_26.05.0-trunk_Rk3318-box_resolute_current_6.18.21_minimal/Armbian-unofficial_26.05.0-trunk_Rk3318-box_resolute_current_6.18.21_minimal.img.xz
@@ -145,12 +112,7 @@ jobs:
           if [ -z "$txt_file" ]; then
           echo "未找到任何打包文件。"
           exit 1
-          fi
-          # tar_name="${txt_file%.txt}"           
-          # tar -cvf "${tar_name}.tar" *
-          # TAR_FILE=$(ls -t *.tar | head -n 1)          
-          # echo "已成功打包img文件：${tar_name}.tar"
-          # ls | tar -cvf armbian_images_$timestamp.tar -T -   
+          fi             
           echo "status=success" >> $GITHUB_OUTPUT
           echo "TAG_BASENAME=${TAG_BASENAME}" >> $GITHUB_OUTPUT  # 供后续步骤使用
           
