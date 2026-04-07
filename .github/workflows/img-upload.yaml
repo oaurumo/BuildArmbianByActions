@@ -1,0 +1,167 @@
+#==========================================================================
+# Description: Build Armbian from official upstream images
+# Copyright (C) 2021 https://github.com/ophub/amlogic-s9xxx-armbian
+#==========================================================================
+
+name: img-upload
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      set_release:
+        description: "Select OS Release."
+        required: false
+        default: "resolute"
+        type: choice
+        options:          
+          - resolute
+          - noble
+          - jammy
+          - focal
+          - bionic
+          - ---
+          - trixie
+          - bookworm
+          - bullseye
+          - buster
+          - stretch
+env:
+  TZ: Etc/UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    if: ${{ github.event.repository.owner.id == github.event.sender.id }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      # 初始化环境
+      - name: Initialize the build environment
+        id: init
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          docker rmi -f $(docker images -q) 2>/dev/null || true
+          [[ -n "${AGENT_TOOLSDIRECTORY}" ]] && sudo rm -rf "${AGENT_TOOLSDIRECTORY}"
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android 2>/dev/null
+          sudo swapoff -a
+          sudo rm -f /swapfile /mnt/swapfile
+          sudo -E apt-get -y update
+          sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
+          sudo -E apt-get -y install $(curl -fsSL https://ophub.org/ubuntu2404-build-armbian-depends)
+          sudo -E systemctl daemon-reload
+          #sudo -E apt-get -y full-upgrade
+          sudo -E apt-get -y autoremove --purge
+          sudo -E apt-get clean
+          sudo sed -i '/NVM_DIR/d;/skel/d' /root/{.bashrc,.profile}
+          sudo rm -rf ~/{.cargo,.dotnet,.rustup}
+          sudo -E timedatectl set-timezone "${TZ:-Etc/UTC}"
+          sudo -E ntpdate ntp.ubuntu.com 0.pool.ntp.org || true
+          sudo -E timedatectl set-ntp true
+          date -u
+          timedatectl status || true
+          echo "status=success" >> ${GITHUB_OUTPUT}
+      # 创建模拟物理磁盘
+      - name: Create virtual disk for extended storage
+        run: |
+          mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
+          root_size=$(expr $(df -h / | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 4)
+          sudo truncate -s "${mnt_size}"G /mnt/mnt.img
+          sudo truncate -s "${root_size}"G /root.img
+          sudo losetup /dev/loop6 /mnt/mnt.img
+          sudo losetup /dev/loop7 /root.img
+          sudo pvcreate /dev/loop6
+          sudo pvcreate /dev/loop7
+          sudo vgcreate github /dev/loop6 /dev/loop7
+          sudo lvcreate -n runner -l 100%FREE github
+          sudo mkfs.xfs -f -i sparse=0 -b size=4096 /dev/github/runner
+          sudo mkdir -p /builder
+          sudo mount /dev/github/runner /builder
+          sudo chown -R runner:runner /builder
+          df -Th
+          echo "status=success" >> ${GITHUB_OUTPUT}
+      # 下载源代码
+      - name: Set Armbian download source
+        id: down
+        working-directory: /builder
+        if: ${{ steps.init.outputs.status == 'success' && !cancelled() }}
+        run: |
+          df -hT ${PWD}
+          git clone -q --single-branch --depth=1 --branch=main https://github.com/armbian/build.git build
+          ln -sf /builder/build ${GITHUB_WORKSPACE}/build
+          echo "status=success" >> $GITHUB_OUTPUT
+
+        # 编译 Armbian
+      - name: Compile Armbian [ ${{ inputs.set_release }} ]
+        id: compile
+        working-directory: /builder
+        if: ${{ steps.down.outputs.status == 'success' && !cancelled() }}
+        run: |
+          # 编译方法及参数说明: https://docs.armbian.com/Developer-Guide_Build-Options
+          # sudo timedatectl set-timezone Asia/Shanghai
+          # sudo update-locale LANG=zh_CN.UTF-8
+          sudo timedatectl set-ntp true
+          timedatectl
+          cd build/
+          # sed -i '/KERNEL_TARGET="current,edge"/d' config/boards/rk3318-box.tvb
+          # echo "KERNEL_TARGET="current,legacy,edge,5.15.y,5.10.y"" > config/boards/rk3318-box.tvb
+          mkdir -p userpatches
+          cd userpatches
+          # echo "KERNELBRANCH='tag:v5.15.16'" > lib.config
+          # echo "source "${BASH_SOURCE%/*}/include/rockchip64_common.inc"" > rockchip64.conf
+          # echo "prepare_boot_configuration" > rockchip64.conf    
+          # echo "KERNEL_GIT_BRANCH='linux-5.15.y'" > lib.config
+          # Add: KERNELBRANCH='tag:v4.14.52' to build/userpatches/lib.config
+          # wget http://kguba.cn/txt/armbianconfig/lib.config
+          # wget http://kguba.cn/txt/armbianconfig/linux-rockchip64-current.config
+          # chmod 777 lib.config && chmod 777 linux-rockchip64-current.config
+          #   wget http://kguba.cn/txt/armbianconfig/lib.config
+          #   wget http://kguba.cn/txt/armbianconfig/linux-rockchip64-current.config
+          #   chmod 777 lib.config && chmod 777 linux-rockchip64-current.config
+          cd ..
+          # cd patch/misc/   h96-tvbox-3566
+          # wget http://kguba.cn/zip/wireless-rtl8723cs2.tar  tar -xf wireless-rtl8723cs2.tar
+          # cd ../..      
+          # BRANCH=legacy current vendor edge collabora midstream 
+          # --kernel 5.15.16  EXPERT=yes启用交互  BRANCH=current KERNEL_GIT=shallow  KERNEL_GIT_BRANCH=linux-5.15.16 ARMBIAN_BUILD_NONINTERACTIVE=yes
+          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=aml-s9xx-box BRANCH=current BUILD_MINIMAL=no  BUILD_DESKTOP=yes  KERNEL_CONFIGURE=no DESKTOP_ENVIRONMENT=xfce DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base COMPRESS_OUTPUTIMAGE=sha,img.xz
+          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=rk3318-box BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny iptables network-manager"  
+          ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=rk3318-box BRANCH=current KERNEL_BTF=no ARMBIAN_BUILD_NONINTERACTIVE=yes BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=no KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
+          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=bananapim4zero BRANCH=edge BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
+          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=panther-x2 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny hostapd bridge-utils ifupdown iptables network-manager"  
+          # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=jp-tvbox-3566 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
+          # sudo tar -cpf build.tar  action.yml config extensions LICENSE packages requirements.txt userpatches cache CONTRIBUTING.md patch shell.nix VERSION compile.sh CREDITS.md lib README.md tools
+          # sudo xz -k -9 build.tar
+          # sudo mv build.tar.xz output/images/
+          cd output/images/
+          # sudo split -b 1990M build.tar.xz build.tar.xz.part-
+          tag_img=$(ls -t *.img | head -n 1)
+          TAG_BASENAME=$(basename "$tag_img" .img)          
+          sudo xz -9 *.img          
+          # timestamp=$(date +%Y%m%d%H%M%S)
+          txt_file=$(find . -maxdepth 1 -type f -name "*.txt" | head -n 1)
+          if [ -z "$txt_file" ]; then
+          echo "未找到任何打包文件。"
+          exit 1
+          fi
+          # tar_name="${txt_file%.txt}"           
+          # tar -cvf "${tar_name}.tar" *
+          # TAR_FILE=$(ls -t *.tar | head -n 1)          
+          # echo "已成功打包img文件：${tar_name}.tar"
+          # ls | tar -cvf armbian_images_$timestamp.tar -T -   
+          echo "status=success" >> $GITHUB_OUTPUT
+          echo "TAG_BASENAME=${TAG_BASENAME}" >> $GITHUB_OUTPUT  # 供后续步骤使用
+          
+          
+      - name: Upload Armbian image to Release
+        uses: ncipollo/release-action@main
+        if: ${{ steps.compile.outputs.status == 'success' && !cancelled() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+        with:
+          # tag: armbian-img
+          artifacts: build/output/images/*
+          skipIfReleaseExists: true          
+          tag:  ${{ steps.compile.outputs.TAG_BASENAME }}
