@@ -1,6 +1,5 @@
 #==========================================================================
-# Description: Build Armbian x86 server image
-# Copyright (C) 2021 https://github.com/ophub/amlogic-s9xxx-armbian
+# Description: BuildArmbianC
 #==========================================================================
 
 name: BuildArmbianC
