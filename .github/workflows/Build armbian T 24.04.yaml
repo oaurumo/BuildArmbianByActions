@@ -159,7 +159,7 @@ jobs:
           cd output/images/
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-
           tag_img=$(ls -t *.img | head -n 1)
-          TAG_BASENAME=$(basename "$tag_img" .img)          
+          TAG_BASENAME=$(basename "$tag_img" .img)_$(date +%Y%m%d%H%M%S)         
           sudo xz -9 *.img          
           # timestamp=$(date +%Y%m%d%H%M%S)
           txt_file=$(find . -maxdepth 1 -type f -name "*.txt" | head -n 1)
