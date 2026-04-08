@@ -151,16 +151,13 @@ jobs:
           touch "Upload_${{ inputs.set_tag_name }}_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
           # && ls -l >> Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt
           # touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  &&  ${{ inputs.set_url }} >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt && wget -i Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
-          if [ -n "${{ inputs.set_url0 }}" ]; then wget "${{ inputs.set_url0 }}"; fi
-          if [ -n "${{ inputs.set_url1 }}" ]; then wget "${{ inputs.set_url1 }}"; fi
-          if [ -n "${{ inputs.set_url2 }}" ]; then wget "${{ inputs.set_url2 }}"; fi
-          if [ -n "${{ inputs.set_url3 }}" ]; then wget "${{ inputs.set_url3 }}"; fi
-          if [ -n "${{ inputs.set_url4 }}" ]; then wget "${{ inputs.set_url4 }}"; fi
-          if [ -n "${{ inputs.set_url5 }}" ]; then wget "${{ inputs.set_url5 }}"; fi
-          if [ -n "${{ inputs.set_url6 }}" ]; then wget "${{ inputs.set_url6 }}"; fi
-          if [ -n "${{ inputs.set_url7 }}" ]; then wget "${{ inputs.set_url7 }}"; fi
-          if [ -n "${{ inputs.set_url8 }}" ]; then wget "${{ inputs.set_url8 }}"; fi
-          if [ -n "${{ inputs.set_url9 }}" ]; then wget "${{ inputs.set_url9 }}"; fi
+          # if [ -n "${{ inputs.set_url0 }}" ]; then wget "${{ inputs.set_url0 }}"; fi
+          for i in {0..9}; do
+            url_var="${{ inputs.set_url$i }}"
+            if [ -n "$url_var" ]; then
+              wget "$url_var"
+            fi
+          done
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
