@@ -3,7 +3,7 @@
 # Copyright (C) 2021 https://github.com/oaurumo/
 #==========================================================================
 
-name: Build armbian A
+name: Build armbian 22.04
 
 on:
   repository_dispatch:
