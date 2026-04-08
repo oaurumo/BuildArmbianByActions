@@ -173,7 +173,8 @@ jobs:
                       exit 1
                       fi
                       fi
-                      done       
+                      done
+          find . -maxdepth 1 -type f -name "*oaurumo*" -exec rm -fv {} +
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
