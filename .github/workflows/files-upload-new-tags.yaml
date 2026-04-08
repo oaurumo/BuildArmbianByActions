@@ -2,7 +2,7 @@
 # Description: upload files.
 #==========================================================================
 
-name: files-upload-old-tags
+name: files-upload-new-tags
 on:
   repository_dispatch:
   workflow_dispatch:
