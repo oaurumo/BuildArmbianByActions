@@ -10,7 +10,7 @@ on:
       set_tag_name:
         description: "请输入tag_name."
         required: false
-        default: " "
+        default: "-"
         type: string
       set_url0:
         description: "请输入url0."
@@ -152,16 +152,28 @@ jobs:
           # && ls -l >> Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt
           # touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  &&  ${{ inputs.set_url }} >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt && wget -i Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
           # if [ -n "${{ inputs.set_url0 }}" ]; then wget "${{ inputs.set_url0 }}"; fi
-          if [ -n "${{ inputs.set_url0 }}" ]; then wget "${{ inputs.set_url0 }}"; fi
-          if [ -n "${{ inputs.set_url1 }}" ]; then wget "${{ inputs.set_url1 }}"; fi
-          if [ -n "${{ inputs.set_url2 }}" ]; then wget "${{ inputs.set_url2 }}"; fi
-          if [ -n "${{ inputs.set_url3 }}" ]; then wget "${{ inputs.set_url3 }}"; fi
-          if [ -n "${{ inputs.set_url4 }}" ]; then wget "${{ inputs.set_url4 }}"; fi
-          if [ -n "${{ inputs.set_url5 }}" ]; then wget "${{ inputs.set_url5 }}"; fi
-          if [ -n "${{ inputs.set_url6 }}" ]; then wget "${{ inputs.set_url6 }}"; fi
-          if [ -n "${{ inputs.set_url7 }}" ]; then wget "${{ inputs.set_url7 }}"; fi
-          if [ -n "${{ inputs.set_url8 }}" ]; then wget "${{ inputs.set_url8 }}"; fi
-          if [ -n "${{ inputs.set_url9 }}" ]; then wget "${{ inputs.set_url9 }}"; fi
+          urls=(
+          "${{ inputs.set_url0 }}"
+          "${{ inputs.set_url1 }}"
+          "${{ inputs.set_url2 }}"
+          "${{ inputs.set_url3 }}"
+          "${{ inputs.set_url4 }}"
+          "${{ inputs.set_url5 }}"
+          "${{ inputs.set_url6 }}"
+          "${{ inputs.set_url7 }}"
+          "${{ inputs.set_url8 }}"
+          "${{ inputs.set_url9 }}"
+          )
+          for url in "${urls[@]}"; do
+              if [ -n "$url" ]; then
+                  echo "Downloading $url"
+                  wget --tries=3 --timeout=30 "$url"
+                  if [ $? -ne 0 ]; then
+                      echo "::error::Failed to download $url"
+                      exit 1
+                      fi
+                      fi
+                      done       
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
