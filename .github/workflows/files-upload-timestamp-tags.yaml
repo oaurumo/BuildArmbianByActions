@@ -2,7 +2,7 @@
 # Description: upload files.
 #==========================================================================
 
-name: files-upload-timestamp-tag
+name: files-upload-timestamp-tags
 on:
   repository_dispatch:
   workflow_dispatch:
