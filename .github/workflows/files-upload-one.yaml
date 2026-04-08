@@ -2,7 +2,7 @@
 # Description: upload files.
 #==========================================================================
 
-name: files-upload
+name: files-upload-one
 on:
   repository_dispatch:
   workflow_dispatch:
