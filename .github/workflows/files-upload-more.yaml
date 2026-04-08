@@ -13,52 +13,52 @@ on:
         default: " "
         type: string
       set_url0:
-        description: "请输入url."
+        description: "请输入url0."
         required: false
         default: " "
         type: string
       set_url1:
-        description: "请输入url."
+        description: "请输入url1."
         required: false
         default: " "
         type: string
       set_url2:
-        description: "请输入url."
+        description: "请输入url2."
         required: false
         default: " "
         type: string
       set_url3:
-        description: "请输入url."
+        description: "请输入url3."
         required: false
         default: " "
         type: string
       set_url4:
-        description: "请输入url."
+        description: "请输入url4."
         required: false
         default: " "
         type: string
       set_url5:
-        description: "请输入url."
+        description: "请输入url5."
         required: false
         default: " "
         type: string
       set_url6:
-        description: "请输入url."
+        description: "请输入url6."
         required: false
         default: " "
         type: string
       set_url7:
-        description: "请输入url."
+        description: "请输入url7."
         required: false
         default: " "
         type: string
       set_url8:
-        description: "请输入url."
+        description: "请输入url8."
         required: false
         default: " "
         type: string
       set_url9:
-        description: "请输入url."
+        description: "请输入url9."
         required: false
         default: " "
         type: string
@@ -151,16 +151,16 @@ jobs:
           touch "Upload_${{ inputs.set_tag_name }}_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
           # && ls -l >> Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt
           # touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  &&  ${{ inputs.set_url }} >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt && wget -i Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
-          wget ${{ inputs.set_url0 }}
-          wget ${{ inputs.set_url1 }}
-          wget ${{ inputs.set_url2 }}
-          wget ${{ inputs.set_url3 }}
-          wget ${{ inputs.set_url4 }}
-          wget ${{ inputs.set_url5 }}
-          wget ${{ inputs.set_url6 }}
-          wget ${{ inputs.set_url7 }}
-          wget ${{ inputs.set_url8 }}  
-          wget ${{ inputs.set_url9 }}   
+          if [ -n "${{ inputs.set_url0 }}" ]; then wget "${{ inputs.set_url0 }}"; fi
+          if [ -n "${{ inputs.set_url1 }}" ]; then wget "${{ inputs.set_url1 }}"; fi
+          if [ -n "${{ inputs.set_url2 }}" ]; then wget "${{ inputs.set_url2 }}"; fi
+          if [ -n "${{ inputs.set_url3 }}" ]; then wget "${{ inputs.set_url3 }}"; fi
+          if [ -n "${{ inputs.set_url4 }}" ]; then wget "${{ inputs.set_url4 }}"; fi
+          if [ -n "${{ inputs.set_url5 }}" ]; then wget "${{ inputs.set_url5 }}"; fi
+          if [ -n "${{ inputs.set_url6 }}" ]; then wget "${{ inputs.set_url6 }}"; fi
+          if [ -n "${{ inputs.set_url7 }}" ]; then wget "${{ inputs.set_url7 }}"; fi
+          if [ -n "${{ inputs.set_url8 }}" ]; then wget "${{ inputs.set_url8 }}"; fi
+          if [ -n "${{ inputs.set_url9 }}" ]; then wget "${{ inputs.set_url9 }}"; fi
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
