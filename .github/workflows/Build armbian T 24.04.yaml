@@ -36,7 +36,17 @@ on:
           - panther-x2
           - jp-tvbox-3566
           - rk3318-box
-          - aml-s9xx-box          
+          - aml-s9xx-box   
+      armbian_branch:
+        description: "Select linux branch."
+        required: false
+        default: "current"
+        type: choice
+        options:         
+          - edge
+          - current
+          - legacy
+          - vendor          
 env:
   TZ: Etc/UTC
 
@@ -139,7 +149,7 @@ jobs:
           # --kernel 5.15.16  EXPERT=yes启用交互  BRANCH=current KERNEL_GIT=shallow  KERNEL_GIT_BRANCH=linux-5.15.16 ARMBIAN_BUILD_NONINTERACTIVE=yes
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=aml-s9xx-box BRANCH=current BUILD_MINIMAL=no  BUILD_DESKTOP=yes  KERNEL_CONFIGURE=no DESKTOP_ENVIRONMENT=xfce DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base COMPRESS_OUTPUTIMAGE=sha,img.xz
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=rk3318-box BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny iptables network-manager"  
-          ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=current KERNEL_BTF=no ARMBIAN_BUILD_NONINTERACTIVE=yes BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=no KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
+          ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=${{ inputs.armbian_branch }} KERNEL_BTF=no ARMBIAN_BUILD_NONINTERACTIVE=yes BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=no KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=bananapim4zero BRANCH=edge BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=panther-x2 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny hostapd bridge-utils ifupdown iptables network-manager"  
           # ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=jp-tvbox-3566 BRANCH=current BUILD_MINIMAL=yes BUILD_ONLY=no  HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no COMPRESS_OUTPUTIMAGE="sha,img" KERNEL_GIT=shallow SHARE_LOG=yes PACKAGE_LIST_BOARD="vim-tiny network-manager"  
