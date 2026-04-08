@@ -2,7 +2,7 @@
 # Description: upload files.
 #==========================================================================
 
-name: files-upload-new-tags
+name: files-upload-customized-tags
 on:
   repository_dispatch:
   workflow_dispatch:
