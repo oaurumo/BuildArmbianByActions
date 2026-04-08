@@ -7,12 +7,62 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-      set_url:
+      set_tag_name:
+        description: "请输入tag_name."
+        required: false
+        default: " "
+        type: string
+      set_url0:
         description: "请输入url."
         required: false
         default: " "
         type: string
-     # set_url2:
+      set_url1:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url2:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url3:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url4:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url5:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url6:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url7:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url8:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+      set_url9:
+        description: "请输入url."
+        required: false
+        default: " "
+        type: string
+     # set_url9:
         # description: "请输入url."
         # required: false
         # default: " "
@@ -98,16 +148,19 @@ jobs:
           mkdir -p output && mkdir -p output/images          
           cd output/images/
           # wget https://github.com/minimal.img.xz
-          touch "Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
+          touch "Upload_${{ inputs.set_tag_name }}_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
           # && ls -l >> Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt
           # touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  &&  ${{ inputs.set_url }} >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt && wget -i Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
-          # wget ${{ inputs.set_url }}   
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.08.0-trunk_Rk3318-box_noble_current_6.12.33_minimal/Armbian-unofficial_25.08.0-trunk_Rk3318-box_noble_current_6.12.33_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.08.0-trunk_Rk3318-box_bookworm_current_6.12.33_minimal/Armbian-unofficial_25.08.0-trunk_Rk3318-box_bookworm_current_6.12.33_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_Rk3318-box_noble_current_6.12.41_minimal/Armbian-unofficial_25.11.0-trunk_Rk3318-box_noble_current_6.12.41_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Armbian-unofficial_25.11.0-trunk_Rk3318-box_trixie_current_6.12.43_minimal/Armbian-unofficial_25.11.0-trunk_Rk3318-box_trixie_current_6.12.43_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Upload_2026-04-07_11-21-39/Armbian-unofficial_25.11.0-trunk_Rk3318-box_trixie_current_6.12.53_minimal.img.xz
-          wget https://github.com/oaurumo/BuildArmbianByActions/releases/download/Upload_2026-04-07_11-21-39/Armbian-unofficial_26.05.0-trunk_Rk3318-box_resolute_current_6.18.21_minimal.img.xz
+          wget ${{ inputs.set_url0 }}
+          wget ${{ inputs.set_url1 }}
+          wget ${{ inputs.set_url2 }}
+          wget ${{ inputs.set_url3 }}
+          wget ${{ inputs.set_url4 }}
+          wget ${{ inputs.set_url5 }}
+          wget ${{ inputs.set_url6 }}
+          wget ${{ inputs.set_url7 }}
+          wget ${{ inputs.set_url8 }}  
+          wget ${{ inputs.set_url9 }}   
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           TAG_BASENAME=$(basename "$tag_img" .txt)          
