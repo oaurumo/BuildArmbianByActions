@@ -174,9 +174,10 @@ jobs:
                       fi
                       fi
                       done
+          
+          wget https://018100.xyz/x/txt/github-upload-xxx.txt
+          wget -i github-upload.txt
           find . -maxdepth 1 -type f -name "*xxx*" -exec rm -fv {} +
-          wget https://018100.xyz/x/txt/github-upload.txt
-          ${{ inputs.set_wget }}wget -i github-upload.txt
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           # TAG_BASENAME=$(basename "$tag_img" .txt)   
