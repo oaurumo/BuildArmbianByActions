@@ -101,12 +101,13 @@ jobs:
         if: ${{ steps.down.outputs.status == 'success' && !cancelled() }}
         run: |
           # 编译方法及参数说明: https://docs.armbian.com/Developer-Guide_Build-Options
-          sudo timedatectl set-timezone Asia/Shanghai          
+          # sudo timedatectl set-timezone Asia/Shanghai          
           sudo timedatectl set-ntp true
           timedatectl
           cd build/
           mkdir -p output && mkdir -p output/images          
           cd output/images/
+          sudo timedatectl set-timezone Asia/Shanghai
           # wget https://github.com/minimal.img.xz
           touch "Upload_${{inputs.set_tag_name}}_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
           # && ls -l >> Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt
