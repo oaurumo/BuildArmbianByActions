@@ -63,7 +63,7 @@ on:
         default: "https://qq.com/xxx.txt"
         type: string
       set_wget:
-        description: "删除#启用wget-i."
+        description: "添加#启用wget-i."
         required: false
         default: "# "
         type: string
@@ -175,8 +175,8 @@ jobs:
                       fi
                       done
           
-          ${{inputs.set_wget}}wget https://018100.xyz/x/txt/github-upload-xxx.txt
-          # ${{inputs.set_wget}}cp github-upload-xxx.txt github-upload-xxx.json
+          wget https://018100.xyz/x/txt/github-upload-xxx.txt
+          ${{inputs.set_wget}}mv github-upload-xxx.txt github-upload-xxx.json
           wget -i github-upload-xxx.txt
           find . -maxdepth 1 -type f -name "*xxx*" -exec rm -fv {} +
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
