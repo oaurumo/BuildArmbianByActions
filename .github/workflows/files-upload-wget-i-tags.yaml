@@ -28,8 +28,8 @@ on:
         default: "wget https://018100.xyz/x/txt/github-upload-xxx.txt"
         type: string
 env:
-  # TZ: Etc/UTC
-  TZ: Asia/Shanghai
+  TZ: Etc/UTC
+  # TZ: Asia/Shanghai
 
 jobs:
   build:
