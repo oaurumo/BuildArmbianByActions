@@ -62,7 +62,7 @@ on:
         required: false
         default: "https://qq.com/xxx.txt"
         type: string
-     set_wget_i:
+      set_wget:
         description: "删除#启用wget-i."
         required: false
         default: "# "
@@ -175,7 +175,7 @@ jobs:
                       fi
                       done
           find . -maxdepth 1 -type f -name "*xxx*" -exec rm -fv {} +
-          ${{ inputs.set_wget_i }}wget -i https://018100.xyz/x/txt/github-upload.txt
+          ${{ inputs.set_wget }}wget -i https://018100.xyz/x/txt/github-upload.txt
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
           # TAG_BASENAME=$(basename "$tag_img" .txt)   
