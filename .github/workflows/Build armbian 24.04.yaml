@@ -3,7 +3,7 @@
 # Copyright (C) 2021 https://github.com/ophub/amlogic-s9xxx-armbian
 #==========================================================================
 
-name: Build armbian T 24.04
+name: Build armbian 24.04
 
 on:
   repository_dispatch:
