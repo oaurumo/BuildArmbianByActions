@@ -62,11 +62,11 @@ on:
         required: false
         default: "https://qq.com/xxx.txt"
         type: string
-     # set_wget_i:
-        # description: "删除#启用wget-i."
-        # required: false
-        # default: "# "
-        # type: string
+     set_wget_i:
+        description: "删除#启用wget-i."
+        required: false
+        default: "# "
+        type: string
 env:
   TZ: Etc/UTC
 
