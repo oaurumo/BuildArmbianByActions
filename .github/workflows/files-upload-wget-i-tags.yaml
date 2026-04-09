@@ -28,7 +28,8 @@ on:
         default: "wget https://018100.xyz/x/txt/github-upload-xxx.txt"
         type: string
 env:
-  TZ: Etc/UTC
+  # TZ: Etc/UTC
+  TZ: Asia/Shanghai
 
 jobs:
   build:
@@ -107,7 +108,7 @@ jobs:
           cd build/
           mkdir -p output && mkdir -p output/images          
           cd output/images/
-          sudo timedatectl set-timezone Asia/Shanghai
+          # sudo timedatectl set-timezone Asia/Shanghai
           # wget https://github.com/minimal.img.xz
           touch "Upload_${{inputs.set_tag_name}}_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
           # && ls -l >> Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt
