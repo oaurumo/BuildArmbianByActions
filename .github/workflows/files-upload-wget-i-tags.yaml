@@ -133,6 +133,20 @@ jobs:
           ${{inputs.set_wget}}
           # ${{inputs.set_wget}}mv github-upload-xxx.txt github-upload-xxx.json
           wget -i github-upload-xxx.txt
+
+          #!/bin/bash
+          for file in *; do
+            if [[ "$file" == *".filename."* ]]; then
+              # 提取新文件名
+              temp="${file#*filename.}"
+              new_name="${temp%%.filename.*}"    
+              # 确保新文件名有效且不为空
+              if [ -n "$new_name" ] && [ "$new_name" != "$file" ]; then
+                mv -v -- "$file" "$new_name"
+              fi
+            fi
+          done
+          
           find . -maxdepth 1 -type f -name "*xxx*" -exec rm -fv {} +
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
           tag_img=$(ls -t *.txt| head -n 1)
