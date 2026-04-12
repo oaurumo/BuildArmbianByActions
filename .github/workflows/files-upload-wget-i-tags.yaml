@@ -110,7 +110,7 @@ jobs:
           cd output/images/
           # sudo timedatectl set-timezone Asia/Shanghai
           # wget https://github.com/minimal.img.xz
-          touch "Upload_${{inputs.set_tag_name}}_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
+          # touch "Upload_${{inputs.set_tag_name}}_$(date +"%Y-%m-%d_%H-%M-%S").txt"  
           # && ls -l >> Upload_rk3318_imgs_$(date +"%Y-%m-%d_%H-%M-%S").txt
           # touch "Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt"  &&  ${{ inputs.set_url }} >> Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt && wget -i Upload_$(date +"%Y-%m-%d_%H-%M-%S").txt
           # if [ -n "${{ inputs.set_url0 }}" ]; then wget "${{ inputs.set_url0 }}"; fi
