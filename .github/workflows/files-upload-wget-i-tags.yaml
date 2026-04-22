@@ -25,7 +25,7 @@ on:
       set_wget:
         description: "启用wget-i."
         required: false
-        default: "wget https://018100.xyz/x/txt/github-upload-xxx.txt"
+        default: "wget https://x.018100.xyz/txt/github-upload-xxx.txt"
         type: string
 env:
   TZ: Etc/UTC
