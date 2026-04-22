@@ -25,7 +25,7 @@ on:
       set_wget:
         description: "启用wget-i."
         required: false
-        default: "wget https://x.018100.xyz/txt/github-upload-xxx.txt"
+        default: "wget https://cb.018100.xyz/_tmp/urls"
         type: string
 env:
   TZ: Etc/UTC
@@ -131,8 +131,9 @@ jobs:
           
           # wget https://018100.xyz/x/txt/github-upload-xxx.txt
           ${{inputs.set_wget}}
+          mv urls xxx-urls.txt
           # ${{inputs.set_wget}}mv github-upload-xxx.txt github-upload-xxx.json
-          wget -i github-upload-xxx.txt         
+          wget -i xxx-urls.txt         
           
           find . -maxdepth 1 -type f -name "*xxx*" -exec rm -fv {} +
           # sudo split -b 1990M build.tar.xz build.tar.xz.part-          
