@@ -25,7 +25,7 @@ on:
       set_wget:
         description: "启用wget-i."
         required: false
-        default: "wget https://cb.018100.xyz/_tmp/urls"
+        default: "wget https://cb.018100.xyz/_055f3d71-46d1-48c5-8501-37fa4bbb995d_tmp/urls"
         type: string
 env:
   TZ: Etc/UTC
