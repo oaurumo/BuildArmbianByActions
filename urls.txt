@@ -1,0 +1,2 @@
+https://github.com/BryceWG/BiBi-Keyboard/releases/download/models/qnn-libs-2.40.0.251030.zip
+https://github.com/BryceWG/BiBi-Keyboard/releases/download/models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.zip
