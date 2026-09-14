@@ -75,7 +75,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          name: Auto Release ${{ steps.tag.outputs.tag }}
+          name: ${{ steps.tag.outputs.tag }}
           body: |
             🤖 自动发布的下载文件
             **文件列表：** `$(ls downloads/)`
