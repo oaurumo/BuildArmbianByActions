@@ -1,4 +1,4 @@
-name: Download and Upload Assets to Existing Release
+name: Upload Assets to Existing Release
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
 
       - name: Upload assets to existing Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           TAG_NAME: ${{ github.event.inputs.tag_name }}
         run: |
           RELEASE_ID=$(jq -r '.id' <<< "$(
