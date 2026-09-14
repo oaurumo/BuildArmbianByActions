@@ -4,21 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       tag_name:
-        description: "Existing tag name (e.g. v1.0.0)"
+        description: "Existing tag name"
         required: true
 
 permissions:
   contents: write
 
 jobs:
-  release:
+  upload:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download files from urls.txt
+      - name: Download files
         run: |
           mkdir downloads
           while IFS= read -r url || [ -n "$url" ]; do
@@ -26,15 +26,12 @@ jobs:
             curl -L -o "downloads/$(basename "$url")" "$url"
           done < urls.txt
 
-      - name: Upload assets to existing Release
+      - name: Upload to Release
         env:
-          GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           TAG_NAME: ${{ github.event.inputs.tag_name }}
         run: |
-          RELEASE_ID=$(jq -r '.id' <<< "$(
-            gh api repos/${{ github.repository }}/releases/tags/$TAG_NAME
-          )")
-
           for file in downloads/*; do
             echo "Uploading $file"
             gh release upload "$TAG_NAME" "$file" --clobber
