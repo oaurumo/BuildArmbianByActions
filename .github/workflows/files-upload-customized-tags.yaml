@@ -62,6 +62,61 @@ on:
         required: false
         default: "https://qq.com/xxx.txt"
         type: string
+      set_url10:
+        description: "请输入url10."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url11:
+        description: "请输入url11."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url12:
+        description: "请输入url12."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url13:
+        description: "请输入url13."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url14:
+        description: "请输入url14."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url15:
+        description: "请输入url15."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string 
+      set_url16:
+        description: "请输入url16."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url17:
+        description: "请输入url17."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url18:
+        description: "请输入url18."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url19:
+        description: "请输入url19."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
+      set_url20:
+        description: "请输入url20."
+        required: false
+        default: "https://qq.com/xxx.txt"
+        type: string
       set_wget:
         description: "添加#启用wget-i."
         required: false
@@ -163,6 +218,17 @@ jobs:
           "${{ inputs.set_url7 }}"
           "${{ inputs.set_url8 }}"
           "${{ inputs.set_url9 }}"
+          "${{ inputs.set_url10 }}"
+          "${{ inputs.set_url11 }}"
+          "${{ inputs.set_url12 }}"
+          "${{ inputs.set_url13 }}"
+          "${{ inputs.set_url14 }}"
+          "${{ inputs.set_url15 }}"
+          "${{ inputs.set_url16 }}"
+          "${{ inputs.set_url17 }}"
+          "${{ inputs.set_url18 }}"
+          "${{ inputs.set_url19 }}"
+          "${{ inputs.set_url20 }}"
           )
           for url in "${urls[@]}"; do
               if [ -n "$url" ]; then
