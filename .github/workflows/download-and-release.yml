@@ -81,7 +81,8 @@ jobs:
             **文件列表：** `$(ls downloads/)`
           files: downloads/*
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
 
       # ===== 步骤5：清理 =====
       - name: Cleanup
