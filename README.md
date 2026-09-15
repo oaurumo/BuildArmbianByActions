@@ -1,6 +1,6 @@
 
 #==========================================================================
-# Description: Build-armbian-on-github
+# Description: Build_imgs&upload_files
 # Copyright (C) 2021 https://github.com/oaurumo/
 #==========================================================================
 
